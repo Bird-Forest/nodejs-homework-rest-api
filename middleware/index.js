@@ -1,9 +1,11 @@
 const ctrlWrapper = require("./ctrlWrapper");
-const validBody = require("./validBody");
+const validateBody = require("./validateBody");
 const isValidId = require("./isValidId");
+const authenticate = require("./authenticate");
 
 module.exports = {
   ctrlWrapper,
-  validBody,
+  validateBody,
   isValidId,
+  authenticate,
 };
