@@ -6,12 +6,14 @@ const { ctrlWrapper } = require("../middleware");
 
 const listContacts = async (req, res) => {
   const { _id: owner } = req.user;
-  const { page = 1, limit = 20 } = req.query;
+  const { favorite = true, page = 1, limit = 20 } = req.query;
+  const filter = favorite === null ? { owner } : { favorite, owner };
   const skip = (page - 1) * limit;
   const result = await Contact.find({ owner }, "-createdAt -updatedAt", {
+    filter,
     skip,
     limit,
-  }).populate("owner", "email subscription");
+  }).populate("owner", " email subscription");
   res.json(result);
 };
 
